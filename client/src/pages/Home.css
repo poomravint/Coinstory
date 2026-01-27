@@ -1,0 +1,35 @@
+.home-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.total-box {
+  height: 250px;
+  width: 230px;
+  border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
+  background-color: #ffd8df60;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  justify-content: center; /* จัดกึ่งกลางแนวนอน */
+  align-items: center; /* จัดกึ่งกลางแนวตั้ง */
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item-box {
+  width: 85%;
+  height: 45px;
+  border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.total-cash {
+  background-color: rgb(196, 245, 215);
+}
