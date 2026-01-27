@@ -12,7 +12,6 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
   display: flex;
-  justify-content: center; /* จัดกึ่งกลางแนวนอน */
   align-items: center; /* จัดกึ่งกลางแนวตั้ง */
   flex-direction: column;
   gap: 15px;
