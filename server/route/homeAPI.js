@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
+//! Get totalCash API
 router.get("/totalcash", (req, res) => {
   const sql = `SELECT SUM
   (CASE 
