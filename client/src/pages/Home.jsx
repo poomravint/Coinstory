@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
+import Axios from "axios";
 
 const Home = () => {
+  const [totalCash, setTotalCash] = useState(0);
+
   return (
     <>
       <div className="home-container">
