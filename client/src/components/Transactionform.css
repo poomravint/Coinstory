@@ -1,8 +1,74 @@
 .t-form {
-  margin-top: 10px;
+  margin: 20px auto; /* จัดกลางหน้าจอ */
   display: flex;
   flex-direction: column; /* เปลี่ยนให้เรียงต่อกันลงมาเป็นแถว */
-  align-items: center;    /* จัดกลางในแนวนอน (เพราะแกนหลักเปลี่ยนไปแล้ว) */
-  justify-content: center; /* จัดกลางในแนวตั้ง */
-  gap: 15px;              /* เพิ่มระยะห่างระหว่าง select ทั้งสองอัน */
+  align-items: flex-start; /* จัดกลางในแนวนอน (เพราะแกนหลักเปลี่ยนไปแล้ว) */
+  gap: 12px; /* เพิ่มระยะห่างระหว่าง select ทั้งสองอัน */
+  width: 250px;
+  background-color: #ffaab89a;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  color: #555;
+  font-size: 15px;
+}
+
+.t-form label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: -5px; /* ให้ label อยู่ใกล้ input มากขึ้น */
+  color: #7d5a5a;
+}
+
+.type-cat-box label {
+  margin-bottom: 8px;
+}
+.type-cat-box {
+  display: flex;
+  gap: 10px;
+  width: 100%; /* ใช้พื้นที่เต็มความกว้าง */
+  margin-bottom: 5px;
+}
+
+.type-box,
+.cat-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ให้ทั้งสองกล่องกว้างเท่ากันคนละขยัก */
+}
+
+.t-form input,
+.t-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid transparent; /* ซ่อนขอบปกติ */
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #333;
+  font-size: 14px;
+  box-sizing: border-box; /* สำคัญมาก: ทำให้ padding ไม่ดันความกว้าง */
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.t-form input:hover,
+.t-form select:hover {
+  background-color: #fffafa;
+}
+
+.t-form input:focus,
+.t-form select:focus {
+  border-color: #ff8fa3; /* สีขอบตอนกด */
+  box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.2);
+}
+
+/* ปรับแต่งช่อง Note ให้ดูต่างออกไปนิดหน่อย */
+.t-form input[type="text"] {
+  font-style: italic;
+}
+
+/* ไอคอนปฏิทิน */
+::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
 }
