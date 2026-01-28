@@ -26,13 +26,6 @@ const Transactionform = () => {
     }
   }, []);
 
-  // ! For test
-  const [test, setTest] = useState("");
-  useEffect(() => {
-    console.log({ type }, { catagory }, { amount }, { dateTime }, { note });
-  }, [test]);
-  // !
-
   return (
     <>
       <div className="t-form">
@@ -93,10 +86,7 @@ const Transactionform = () => {
           placeholder="Detail"
         />
         {/* Select test */}
-        <select value={test} onChange={(e) => setTest(e.target.value)}>
-          <option value="income">0</option>
-          <option value="expense">1</option>
-        </select>
+        <button>Add</button>
       </div>
     </>
   );

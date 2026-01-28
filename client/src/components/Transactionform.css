@@ -1,5 +1,5 @@
 .t-form {
-  margin: 20px auto; /* จัดกลางหน้าจอ */
+  margin: 5px auto; /* จัดกลางหน้าจอ */
   display: flex;
   flex-direction: column; /* เปลี่ยนให้เรียงต่อกันลงมาเป็นแถว */
   align-items: flex-start; /* จัดกลางในแนวนอน (เพราะแกนหลักเปลี่ยนไปแล้ว) */
@@ -71,4 +71,18 @@
 ::-webkit-calendar-picker-indicator {
   cursor: pointer;
   opacity: 0.6;
+}
+
+.t-form button {
+  width: 30%;
+  padding: 10px;
+  align-self: center;
+  background-color: #a8df8ea2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
