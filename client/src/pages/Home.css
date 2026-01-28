@@ -8,8 +8,8 @@
   height: 250px;
   width: 230px;
   border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
-  background-color: #ffd8df60;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  /* background-color: #ffd8df60; */
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
 
   display: flex;
   align-items: center; /* จัดกึ่งกลางแนวตั้ง */
@@ -18,17 +18,37 @@
 }
 
 .item-box {
-  width: 85%;
-  height: 45px;
+  width:  90%;
+  height: 65px;
   border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   padding: 0 20px;
   box-sizing: border-box;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 5px;
 }
 
 .total-cash {
   background-color: rgb(196, 245, 215);
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.detail-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+} 
+
+.item-box p {
+  margin: 0;
 }

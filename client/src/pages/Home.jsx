@@ -23,10 +23,15 @@ const Home = () => {
         <div className="total-box">
           <p>Your wallet</p>
           <div className="item-box total-cash">
-            <p>Cash</p>
-            <p>
-              <strong>{totalCash}</strong> THB
-            </p>
+            <div className="icon-box">
+              <p>icon</p>
+              <p>
+                <strong>{totalCash}</strong> THB
+              </p>
+            </div>
+            <div className="detail-box">
+              <p>Cash</p>
+            </div>
           </div>
         </div>
       </div>
