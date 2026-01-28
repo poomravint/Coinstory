@@ -1,0 +1,8 @@
+.t-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column; /* เปลี่ยนให้เรียงต่อกันลงมาเป็นแถว */
+  align-items: center;    /* จัดกลางในแนวนอน (เพราะแกนหลักเปลี่ยนไปแล้ว) */
+  justify-content: center; /* จัดกลางในแนวตั้ง */
+  gap: 15px;              /* เพิ่มระยะห่างระหว่าง select ทั้งสองอัน */
+}

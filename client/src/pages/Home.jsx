@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import Axios from "axios";
 
+import Transactionform from "../components/Transactionform";
+
 const Home = () => {
   const [totalCash, setTotalCash] = useState(0);
 
@@ -34,6 +36,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <Transactionform/>
       </div>
     </>
   );

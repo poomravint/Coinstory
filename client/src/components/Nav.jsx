@@ -1,19 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <div>
-      <nav className="nav-bar">
-        <Link to="/">
-          <strong>Home</strong>
-        </Link>
-        <span style={{ color: "white" }}>|</span>
-        <Link to="/summaries">
-          <strong>Summary</strong>
-        </Link>
-      </nav>
-    </div>
+    <nav className="nav-bar">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? "nav-link active" : "nav-link"
+        }
+      >
+        Home
+      </NavLink>
+
+      <span style={{ color: "white" }}> | </span>
+
+      <NavLink
+        to="/summaries"
+        className={({ isActive }) =>
+          isActive ? "nav-link active" : "nav-link"
+        }
+      >
+        Summary
+      </NavLink>
+    </nav>
   );
 };
 
