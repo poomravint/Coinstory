@@ -5,7 +5,7 @@
   align-items: flex-start; /* จัดกลางในแนวนอน (เพราะแกนหลักเปลี่ยนไปแล้ว) */
   gap: 12px; /* เพิ่มระยะห่างระหว่าง select ทั้งสองอัน */
   width: 250px;
-  background-color: #ffaab89a;
+  background-color: #e4d4d79a;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);

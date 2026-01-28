@@ -37,6 +37,10 @@
   background-color: rgb(196, 245, 215);
 }
 
+.today-expense {
+  background-color: rgb(255, 193, 193);
+}
+
 .icon-box {
   display: flex;
   align-items: center;
