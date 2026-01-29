@@ -63,9 +63,9 @@
 }
 
 /* ปรับแต่งช่อง Note ให้ดูต่างออกไปนิดหน่อย */
-.t-form input[type="text"] {
+/* .t-form input[type="text"] {
   font-style: italic;
-}
+} */
 
 /* ไอคอนปฏิทิน */
 ::-webkit-calendar-picker-indicator {
@@ -77,7 +77,7 @@
   width: 30%;
   padding: 10px;
   align-self: center;
-  background-color: #a8df8ea2;
+  background-color: #88ff50a2;
   color: white;
   border: none;
   border-radius: 10px;

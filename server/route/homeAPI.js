@@ -23,5 +23,24 @@ router.get("/totalcash", (req, res) => {
 });
 
 //! POST transaction API
+router.post("/addtransaction", (req, res) => {
+  const { action_at, money_type, category, amount, note } = req.body;
+  const sql = `INSERT INTO transactions (action_at, money_type, category, amount, note)
+               VALUE (?,?,?,?,?)`;
+
+  db.query(
+    sql,
+    [action_at, money_type, category, amount, note],
+    (err, result) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.status(201).json({
+        message: "Transaction recorded successfully!",
+        id: result.insertId, // ส่ง ID ที่เพิ่งสร้างใหม่กลับไปด้วย
+      });
+    },
+  );
+});
 
 module.exports = router;
