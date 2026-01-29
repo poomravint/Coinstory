@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import Axios from "axios";
 
+import cashIcon from "../assets/cash.png";
+import expenseIcon from "../assets/expenses.svg";
 import Transactionform from "../components/Transactionform";
 
 const Home = () => {
@@ -40,7 +42,9 @@ const Home = () => {
           {/* Cash box */}
           <div className="item-box total-cash">
             <div className="icon-box">
-              <p>icon</p>
+              <div className="icon-bg">
+                <img src={cashIcon} alt="Cash Icon" className="cash-img" />
+              </div>
               <p>
                 <strong>{totalCash}</strong> THB
               </p>
@@ -52,7 +56,13 @@ const Home = () => {
           {/* Today Expense box */}
           <div className="item-box today-expense">
             <div className="icon-box">
-              <p>icon</p>
+              <div className="icon-bg">
+                <img
+                  src={expenseIcon}
+                  alt="Expense Icon"
+                  className="expense-img"
+                />
+              </div>
               <p>
                 <strong>{todayExpense}</strong> THB
               </p>

@@ -35,10 +35,15 @@
 
 .total-cash {
   background-color: rgb(196, 245, 215);
+  border-left: 2px solid rgba(0, 128, 0, 0.336);
+  border-bottom: 2px solid rgba(0, 128, 0, 0.336);
+
 }
 
 .today-expense {
   background-color: rgb(255, 193, 193);
+    border-left: 2px solid rgba(128, 0, 0, 0.336);
+  border-bottom: 2px solid rgba(128, 0, 0, 0.336);
 }
 
 .icon-box {
@@ -57,4 +62,22 @@
 
 .item-box p {
   margin: 0;
+}
+
+.icon-bg{
+  margin-top: 4px;
+  margin-bottom: -4px;
+}
+
+
+.cash-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.expense-img {
+  width: 32px;
+  height: 29px;
+  object-fit: contain;
 }
