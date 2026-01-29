@@ -23,7 +23,7 @@ router.get("/totalcash", (req, res) => {
 });
 
 //! Get todayExpense API
-router.get("/todayexpense", (req, res) => {
+router.get("/today-expense", (req, res) => {
   const sql = `SELECT SUM(amount) as total_expense
                FROM transactions
                WHERE DATE(action_at) = CURDATE() AND money_type = "expense"`;
@@ -34,7 +34,7 @@ router.get("/todayexpense", (req, res) => {
     }
     const total = results[0].total_expense ?? 0;
     res.json({
-      total_expense : total,
+      total_expense: total,
     });
   });
 });

@@ -3,7 +3,6 @@ import "./Home.css";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 import cashIcon from "../assets/cash.png";
 import expenseIcon from "../assets/expenses.svg";
 import Transactionform from "../components/Transactionform";
@@ -28,7 +27,7 @@ const Home = () => {
   const getTodayExpense = async () => {
     try {
       const response = await Axios.get(
-        `${import.meta.env.VITE_API_URL}/api/home/todayexpense`,
+        `${import.meta.env.VITE_API_URL}/api/home/today-expense`,
       );
       setTodayExpense(response.data.total_expense || 0);
     } catch (err) {}
@@ -59,7 +58,10 @@ const Home = () => {
             </div>
           </div>
           {/* Today Expense box */}
-          <div className="item-box today-expense" onClick={() => navigate("/today-expense")}>
+          <div
+            className="item-box today-expense"
+            onClick={() => navigate("/today-expense")}
+          >
             <div className="icon-box">
               <div className="icon-bg">
                 <img
@@ -77,7 +79,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <Transactionform />
+        <Transactionform
+          onTransactionAdded={() => {
+            getTotalCash();
+            getTodayExpense();
+          }}
+        />
       </div>
     </>
   );

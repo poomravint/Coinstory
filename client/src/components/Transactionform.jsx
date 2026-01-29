@@ -5,7 +5,7 @@ import "./Transactionform.css";
 import { incomeCategories } from "./Category";
 import { expenseCategories } from "./Category";
 
-const Transactionform = () => {
+const Transactionform = ({ onTransactionAdded }) => {
   const [dateTime, setDateTime] = useState("");
   const [type, setType] = useState("expense");
   const [cetagory, setCetagory] = useState("food");
@@ -19,19 +19,22 @@ const Transactionform = () => {
   }, [type]);
 
   // ! Set current time
+  const setCurrentDateTime = () => {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    setDateTime(now.toISOString().slice(0, 16));
+  };
+
   useEffect(() => {
     {
-      const now = new Date();
-      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-      setDateTime(now.toISOString().slice(0, 16));
-      
+      setCurrentDateTime();
     }
-  }, [],);
-   
-// ! Change Time format for POST to DB
-const formatDateTimeForMySQL = (dt) => {
-  return dt.replace("T", " ") + ":00";
-};
+  }, []);
+
+  // ! Change Time format for POST to DB
+  const formatDateTimeForMySQL = (dt) => {
+    return dt.replace("T", " ") + ":00";
+  };
 
   // ! CALL POST Transaction API
   const postTransaction = async () => {
@@ -47,23 +50,25 @@ const formatDateTimeForMySQL = (dt) => {
         category: cetagory,
         amount: Number(amount),
         note: note,
-      }
-    
-    const res = await Axios.post(
-      `${import.meta.env.VITE_API_URL}/api/home/addtransaction`,
-      payload
-    )
-    console.log("POST success:", res.data);
+      };
 
-    
-    // (option) reset form
-    setAmount("");
-    setNote("");
-    setDateTime("");
-    } catch (err){
+      const res = await Axios.post(
+        `${import.meta.env.VITE_API_URL}/api/home/addtransaction`,
+        payload,
+      );
+
+      if (onTransactionAdded) {
+        onTransactionAdded();
+      }
+      console.log("POST success:", res.data);
+
+      // (option) reset form
+      setAmount("");
+      setNote("");
+      setCurrentDateTime();
+    } catch (err) {
       console.error("POST failed:", err);
     }
-    
   };
 
   return (
