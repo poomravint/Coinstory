@@ -8,6 +8,7 @@ const Home = () => {
   const [totalCash, setTotalCash] = useState(0);
   const [todayExpense, setTodayExpense] = useState(0);
 
+  //! Get totalCash from API
   const getTotalCash = () => {
     Axios.get(`${import.meta.env.VITE_API_URL}/api/home/totalcash`).then(
       (response) => {
@@ -16,8 +17,19 @@ const Home = () => {
     );
   };
 
+  //! Get todayExpense from API
+  const getTodayExpense = async () => {
+    try {
+      const response = await Axios.get(
+        `${import.meta.env.VITE_API_URL}/api/home/todayexpense`,
+      );
+      setTodayExpense(response.data.total_expense || 0);
+    } catch (err) {}
+  };
+
   useEffect(() => {
     getTotalCash();
+    getTodayExpense();
   }, []);
 
   return (

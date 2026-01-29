@@ -35,6 +35,11 @@ const formatDateTimeForMySQL = (dt) => {
 
   // ! CALL POST Transaction API
   const postTransaction = async () => {
+    if (!amount || !dateTime) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
       const payload = {
         action_at: formatDateTimeForMySQL(dateTime),
