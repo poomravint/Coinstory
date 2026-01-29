@@ -31,6 +31,14 @@
   box-sizing: border-box;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   gap: 5px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.item-box:hover {
+  filter: brightness(0.95); /* ทำให้สีเข้มขึ้นนิดๆ */
+  transform: translateY(-2px); /* ยกตัวขึ้นนิดหน่อย */
 }
 
 .total-cash {
