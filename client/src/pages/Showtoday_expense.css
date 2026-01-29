@@ -1,0 +1,47 @@
+.expense-table {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px auto;
+  gap: 15px;
+}
+
+.today-expense-box {
+  background-color: rgba(240, 111, 111, 0.308);
+  border-radius: 25px;
+  border-left: 3px solid rgba(128, 0, 0, 0.336);
+  border-bottom: 2px solid rgba(128, 0, 0, 0.336);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+}
+
+.today-expense-box p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.middle-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.buttom-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.buttom-content p {
+  color: #00000085;
+}
