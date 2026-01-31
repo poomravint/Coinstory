@@ -56,10 +56,9 @@ const Transactionform = ({ onTransactionAdded }) => {
         `${import.meta.env.VITE_API_URL}/api/home/addtransaction`,
         payload,
       );
-
-      if (onTransactionAdded) {
-        onTransactionAdded();
-      }
+      //! Auto update content which show on home page
+       onTransactionAdded();
+      
       console.log("POST success:", res.data);
 
       // (option) reset form

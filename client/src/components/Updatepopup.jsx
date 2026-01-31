@@ -2,6 +2,8 @@ import { useState, use, useEffect } from "react";
 import "./Updatepopup.css";
 import "./Transactionform.css";
 
+import Axios from "axios";
+
 import { incomeCategories } from "./Category";
 import { expenseCategories } from "./Category";
 
@@ -14,43 +16,62 @@ const Updatepopup = ({ item, onClose }) => {
     d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
     return d.toISOString().slice(0, 16);
   };
+  //! Update Date&Time for SQL
+  const formatForMySQL = (dt) => {
+    return dt.replace("T", " ") + ":00";
+  };
 
-//! Checked
- const Check = () => {
-  console.log("Before upload Type" ,type)
-  console.log("Before upload Category" ,catagory)
-  console.log("Before upload Amount" ,amount)
-  console.log("Before upload Date" ,dateTime)
-  console.log("Before upload Note" ,note)
-
- } 
-
+  //! Checked
+  const Check = () => {
+    console.log("Before upload Type", type);
+    console.log("Before upload Category", category);
+    console.log("Before upload Amount", amount);
+    console.log("Before upload Date", dateTime);
+    console.log("Before upload Note", note);
+  };
 
   const [dateTime, setDateTime] = useState(formatForShow(item.action_at));
   const [type, setType] = useState(item.money_type);
-  const [catagory, setCatagory] = useState(item.category);
+  const [category, setCategory] = useState(item.category);
   const [amount, setAmount] = useState(item.amount);
   const [note, setNote] = useState(item.note);
 
   //! Auto Update Category when change type
   useEffect(() => {
-      if (type === item.money_type)
-      {
-        console.log("Active")
-        setCatagory(item.category)
+    if (type === item.money_type) {
+      console.log("Active");
+      setCategory(item.category);
+    } else {
+      if (type === "income") {
+        setCategory(incomeCategories[0]);
+      } else {
+        setCategory(expenseCategories[0]);
       }
-      else
-      {
-        if (type === 'income')
-        {
-          setCatagory(incomeCategories[0])
-        }
-        else
-        {
-          setCatagory(expenseCategories[0]) 
-        }
-      }
-  }, [type])
+    }
+  }, [type]);
+
+  //! CALL UPDATE transaction API
+  const updatetransaction = async () => {
+    
+    try {
+      const payload = {
+        action_at: formatForMySQL(dateTime),
+        money_type: type,
+        category: category,
+        amount: Number(amount),
+        note: note,
+      };
+
+      const res = await Axios.put(
+        `${import.meta.env.VITE_API_URL}/api/updateTransaction/update/${item.id}`,
+        payload,
+      );
+      onClose();
+    } catch (err) {
+      console.error("Update failed:", err);
+      alert("Update failed");
+    }
+  };
 
   return (
     <>
@@ -70,11 +91,11 @@ const Updatepopup = ({ item, onClose }) => {
               </select>
             </div>
             <div className="cat-box">
-              {/* Select catagory */}
+              {/* Select category */}
               <label>Catagories</label>
               <select
-                value={catagory}
-                onChange={(e) => setCatagory(e.target.value)}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
               >
                 {type === "income" &&
                   incomeCategories.map((item, i) => (
@@ -117,6 +138,7 @@ const Updatepopup = ({ item, onClose }) => {
             placeholder="Detail"
           />
           <button onClick={Check}>Check</button>
+          <button onClick={updatetransaction}>Save</button>
           <button onClick={onClose}>Close</button>
         </div>
       </div>
