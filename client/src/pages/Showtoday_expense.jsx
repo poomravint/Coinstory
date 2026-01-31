@@ -2,9 +2,11 @@ import { useState, useEffect, use } from "react";
 import Axios from "axios";
 
 import "./Showtoday_expense.css";
+import Updatepopup from "../components/Updatepopup";
 
 const Showtoday_expense = () => {
   const [todayExpense, setTodayExpense] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   // * Time Format
   const formatDateTime = (dateString) =>
@@ -18,19 +20,19 @@ const Showtoday_expense = () => {
     Axios.get(
       `${import.meta.env.VITE_API_URL}/api/showTransaction/today-expense`,
     ).then((response) => {
-      setTodayExpense(response.data.data || 0);
+      setTodayExpense(response.data.data || []);
     });
   };
 
   useEffect(() => {
     getTodayExpense();
-  });
+  },[]);
 
   return (
     <>
       <div className="expense-table">
         {todayExpense.map((item) => (
-          <div className="today-expense-box">
+          <div className="today-expense-box" key={item.id} onClick={() => setSelectedItem(item)}>
             <div className="top-content">
               <p>Type : {item.category}</p>
               <p>
@@ -48,6 +50,9 @@ const Showtoday_expense = () => {
           </div>
         ))}
       </div>
+        <Updatepopup item={selectedItem} onClose={() => setSelectedItem(null)}/>
+      
+
     </>
   );
 };

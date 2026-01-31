@@ -8,13 +8,13 @@ import { expenseCategories } from "./Category";
 const Transactionform = ({ onTransactionAdded }) => {
   const [dateTime, setDateTime] = useState("");
   const [type, setType] = useState("expense");
-  const [cetagory, setCetagory] = useState("food");
+  const [catagory, setCatagory] = useState("food");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
 
   useEffect(() => {
     {
-      type === "income" ? setCetagory("Salary") : setCetagory("Food");
+      type === "income" ? setCatagory("Salary") : setCatagory("Food");
     }
   }, [type]);
 
@@ -47,7 +47,7 @@ const Transactionform = ({ onTransactionAdded }) => {
       const payload = {
         action_at: formatDateTimeForMySQL(dateTime),
         money_type: type,
-        category: cetagory,
+        category: catagory,
         amount: Number(amount),
         note: note,
       };
@@ -84,11 +84,11 @@ const Transactionform = ({ onTransactionAdded }) => {
             </select>
           </div>
           <div className="cat-box">
-            {/* Select cetagory */}
+            {/* Select catagory */}
             <label>Catagories</label>
             <select
-              value={cetagory}
-              onChange={(e) => setCetagory(e.target.value)}
+              value={catagory}
+              onChange={(e) => setCatagory(e.target.value)}
             >
               {type === "income" &&
                 incomeCategories.map((item, i) => (
@@ -130,7 +130,6 @@ const Transactionform = ({ onTransactionAdded }) => {
           onChange={(e) => setNote(e.target.value)}
           placeholder="Detail"
         />
-        {/* Select test */}
         <button onClick={postTransaction}>Add</button>
       </div>
     </>
