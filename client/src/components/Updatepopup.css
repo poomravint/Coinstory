@@ -29,7 +29,7 @@
   width: 100%;             /* ให้กินพื้นที่เต็มความกว้างของฟอร์ม */
 }
 
-.save-btn, .close-btn {
+.save-btn, .delete-btn {
   flex: 1;                 /* ให้ทั้งสองปุ่มกว้างเท่ากัน (Optional) */
   max-width: 120px;        /* จำกัดความกว้างไม่ให้ใหญ่เทอะทะ */
   padding: 10px;
@@ -45,7 +45,7 @@
     color: white;
 }
 
-.button-box .close-btn {
+.button-box .delete-btn {
   background-color: #ff002f;   /* สีแดงอ่อนๆ ให้เข้ากับธีมฟอร์ม */
   color: white;
 }

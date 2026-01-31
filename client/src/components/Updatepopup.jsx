@@ -65,6 +65,23 @@ const Updatepopup = ({ item, onClose, onUpdated }) => {
     }
   };
 
+  //! CALL DELETE transaction API
+    const deletetransaction = async () => {
+    try {
+
+      const res = await Axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/deleteTransaction/${item.id}`,
+      );
+
+      onUpdated();
+      onClose();
+      
+    } catch (err) {
+      console.error("Update failed:", err);
+      alert("Update failed");
+    }
+  };
+
   return (
     <>
       <div className="popup-overlay" onClick={onClose}>
@@ -133,8 +150,8 @@ const Updatepopup = ({ item, onClose, onUpdated }) => {
             <button className="save-btn" onClick={updatetransaction}>
               Save
             </button>
-            <button className="close-btn" onClick={onClose}>
-              Close
+            <button className="delete-btn" onClick={deletetransaction}>
+              Delete
             </button>
           </div>
         </div>
