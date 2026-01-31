@@ -50,7 +50,10 @@ const Showtoday_expense = () => {
           </div>
         ))}
       </div>
-        <Updatepopup item={selectedItem} onClose={() => setSelectedItem(null)}/>
+        <Updatepopup item={selectedItem} 
+        onClose={() => setSelectedItem(null)}
+        onUpdated={getTodayExpense}
+        />
       
 
     </>

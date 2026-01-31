@@ -19,3 +19,39 @@
 .popup-content button {
   margin-top: 12px;
 }
+
+.button-box {
+  display: flex;
+  justify-content: center; /* จัดกึ่งกลางแนวนอน */
+  align-items: center;     /* จัดกึ่งกลางแนวตั้ง */
+  gap: 15px;               /* สร้างช่องว่างระหว่างปุ่ม Save และ Close */
+  margin-top: 20px;        /* เว้นระยะจาก Input ด้านบน */
+  width: 100%;             /* ให้กินพื้นที่เต็มความกว้างของฟอร์ม */
+}
+
+.save-btn, .close-btn {
+  flex: 1;                 /* ให้ทั้งสองปุ่มกว้างเท่ากัน (Optional) */
+  max-width: 120px;        /* จำกัดความกว้างไม่ให้ใหญ่เทอะทะ */
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.button-box .save-btn {
+  background-color: #61ee84; /* สีเขียวมิ้นต์ที่คุณใช้ */
+    color: white;
+}
+
+.button-box .close-btn {
+  background-color: #ff002f;   /* สีแดงอ่อนๆ ให้เข้ากับธีมฟอร์ม */
+  color: white;
+}
+
+/* เพิ่ม Effect เวลาเอาเมาส์ไปชี้ */
+.save-btn:hover, .close-btn:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}

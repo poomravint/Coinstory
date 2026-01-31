@@ -7,7 +7,7 @@ import Axios from "axios";
 import { incomeCategories } from "./Category";
 import { expenseCategories } from "./Category";
 
-const Updatepopup = ({ item, onClose }) => {
+const Updatepopup = ({ item, onClose, onUpdated }) => {
   if (!item) return null;
 
   //! Update Date&Time for Show
@@ -21,15 +21,6 @@ const Updatepopup = ({ item, onClose }) => {
     return dt.replace("T", " ") + ":00";
   };
 
-  //! Checked
-  const Check = () => {
-    console.log("Before upload Type", type);
-    console.log("Before upload Category", category);
-    console.log("Before upload Amount", amount);
-    console.log("Before upload Date", dateTime);
-    console.log("Before upload Note", note);
-  };
-
   const [dateTime, setDateTime] = useState(formatForShow(item.action_at));
   const [type, setType] = useState(item.money_type);
   const [category, setCategory] = useState(item.category);
@@ -39,7 +30,6 @@ const Updatepopup = ({ item, onClose }) => {
   //! Auto Update Category when change type
   useEffect(() => {
     if (type === item.money_type) {
-      console.log("Active");
       setCategory(item.category);
     } else {
       if (type === "income") {
@@ -52,7 +42,6 @@ const Updatepopup = ({ item, onClose }) => {
 
   //! CALL UPDATE transaction API
   const updatetransaction = async () => {
-    
     try {
       const payload = {
         action_at: formatForMySQL(dateTime),
@@ -66,7 +55,10 @@ const Updatepopup = ({ item, onClose }) => {
         `${import.meta.env.VITE_API_URL}/api/updateTransaction/update/${item.id}`,
         payload,
       );
+
+      onUpdated();
       onClose();
+      
     } catch (err) {
       console.error("Update failed:", err);
       alert("Update failed");
@@ -137,9 +129,14 @@ const Updatepopup = ({ item, onClose }) => {
             onChange={(e) => setNote(e.target.value)}
             placeholder="Detail"
           />
-          <button onClick={Check}>Check</button>
-          <button onClick={updatetransaction}>Save</button>
-          <button onClick={onClose}>Close</button>
+          <div className="button-box">
+            <button className="save-btn" onClick={updatetransaction}>
+              Save
+            </button>
+            <button className="close-btn" onClick={onClose}>
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </>
