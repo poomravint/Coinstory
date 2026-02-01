@@ -1,0 +1,103 @@
+.income-expense-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.toggle-wrapper {
+  display: flex;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 50px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  gap: 5px;
+}
+
+.toggle-item {
+  width: 100px;
+  padding: 10px 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #888;
+  transition: all 0.3s ease;
+}
+
+.toggle-item.active {
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-item.active.income {
+  color: white;
+  background-color: #2ecc709d;
+}
+
+.toggle-item.active.expense {
+  color: white;
+  background-color: #e74d3ca2;
+}
+
+.toggle-item:not(.active):hover {
+  color: #555;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.select-box {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.select-Month-Year {
+  /* ลบสไตล์เดิมของ Browser */
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* ปรับขนาดและทรง */
+  width: 80px;
+  padding: 10px 15px;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+
+  /* ตัวหนังสือ */
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  background-color: #ffffff;
+
+  /* เงาและ Transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* เมื่อเอาเมาส์ไปชี้ */
+.select-Month-Year:hover {
+  border-color: #a8df8e; /* สีเขียวมิ้นต์ตามธีมคุณ */
+  background-color: #f9fff6;
+}
+
+/* เมื่อกดเลือก */
+.select-Month-Year:focus {
+  border-color: #a8df8e;
+  box-shadow: 0 0 0 4px rgba(168, 223, 142, 0.2);
+}
+
+/* ตกแต่งไอคอนปฏิทิน (สำหรับ Chrome/Edge) */
+.select-Month-Year::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.5); /* ปรับสีไอคอนให้จางลง */
+  transition: 0.3s;
+}
+
+.select-Month-Year::-webkit-calendar-picker-indicator:hover {
+  transform: scale(1.2);
+  filter: invert(0.3);
+}
