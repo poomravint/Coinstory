@@ -57,10 +57,15 @@ const Home = () => {
               <p>Cash</p>
             </div>
           </div>
+
           {/* Today Expense box */}
           <div
             className="item-box today-expense"
-            onClick={() => navigate("/today-expense")}
+            onClick={() => {
+              if (todayExpense !== 0) {
+                navigate("/today-expense");
+              }
+            }}
           >
             <div className="icon-box">
               <div className="icon-bg">
