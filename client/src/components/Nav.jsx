@@ -11,9 +11,7 @@ const Nav = () => {
       >
         Home
       </NavLink>
-
       <span style={{ color: "white" }}> | </span>
-
       <NavLink
         to="/summaries"
         className={({ isActive }) =>
@@ -21,6 +19,15 @@ const Nav = () => {
         }
       >
         Summary
+      </NavLink>
+      <span style={{ color: "white" }}> | </span>
+      <NavLink
+        to="/list"
+        className={({ isActive }) =>
+          isActive ? "nav-link active" : "nav-link"
+        }
+      >
+        List
       </NavLink>
     </nav>
   );
