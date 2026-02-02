@@ -7,21 +7,23 @@
 }
 
 .total-box {
-  height: 320px;
-  width: 300px;
-  border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
-  /* background-color: #ffd8df60; */
-  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
-
   display: flex;
-  align-items: center; /* จัดกึ่งกลางแนวตั้ง */
   flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 15px;
+  width: 100%;
+  max-width: 1000px;        /* เพดานความกว้างสูงสุดในจอคอม */
+  height: auto;             /* ให้ความสูงยืดตามเนื้อหา */
+  margin: 20px auto;        /* จัดกึ่งกลางหน้าจอหลัก */
 }
 
 .item-box {
-  width: 90%;
-  height: 65px;
+  width: 100%;
+  max-width: 250px; /* ไม่ให้กล่องยาวจนเกินไปในจอคอม */
+  height: 80px;     /* กำหนดความสูงให้คงที่เพื่อให้ดูเป็นระเบียบ */
+  
   border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
   display: flex;
   align-items: center;
@@ -35,6 +37,19 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+@media (min-width: 768px) {
+  .total-box {
+    flex-direction: row; /* สลับกลับเป็นแนวนอน */
+    justify-content: center;
+    max-width: 1000px;
+  }
+
+  .item-box {
+    flex: 0 0 200px; /* ไม่ต้องขยาย (0) ไม่ต้องหด (0) ล็อกไว้ที่ 200px */
+  }
+}
+
 
 .item-box:hover {
   filter: brightness(0.95); /* ทำให้สีเข้มขึ้นนิดๆ */

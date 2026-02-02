@@ -72,7 +72,6 @@ const Home = () => {
     <>
       <div className="home-container">
         <div className="total-box">
-          <p>Your wallet</p>
           {/* Cash box */}
           <div className="item-box total-cash">
             <div className="icon-box">
