@@ -116,7 +116,7 @@ const Home = () => {
             className="item-box currentmonth-remaining"
             onClick={() => {
               if (todayExpense !== 0) {
-                navigate("/today-expense");
+                navigate("/list");
               }
             }}
           >
