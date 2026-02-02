@@ -1,0 +1,46 @@
+.show-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;  
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.transaction-box p {
+  margin: 0; /* ลบระยะห่างที่ Browser แถมมาออกให้หมด */
+  line-height: 1.4; /* ปรับช่องว่างระหว่างบรรทัดให้พอดี */
+}
+
+.transaction-box{
+  flex: 1 1 200px;
+  max-width: 250px;
+  min-height: 0;
+  border-radius: 25px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transaction-box:hover {
+  transform: translateY(-3px); 
+}
+
+.income-box {
+  background-color: #2ecc703d;
+  border-left: 2px solid #2ecc70e8;
+  border-bottom: 2px solid #2ecc707a;
+
+}
+
+.expense-box {
+  background-color: rgba(255, 193, 193, 0.623);
+  border-left: 2px solid rgba(128, 0, 0, 0.336);
+  border-bottom: 2px solid rgba(128, 0, 0, 0.336);
+
+}

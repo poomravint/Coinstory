@@ -18,4 +18,32 @@ router.get("/today-expense", (req, res) => {
   });
 });
 
+//! GET Month transaction
+router.get("/month-transaction", (req, res) => {
+  const { month, year, type } = req.query;
+
+  if (!month || !year || !type) {
+    return res
+      .status(400)
+      .json({ message: "Please provide month, year, and type" });
+  }
+
+  const sql = `SELECT * FROM transactions
+               WHERE MONTH(action_at) = ?
+               AND YEAR(action_at) = ?
+               AND money_type = ?
+               ORDER BY action_at DESC`;
+
+  db.query(sql, [month, year, type], (err, results) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    res.json({
+      count: results.length,
+      data: results
+    });
+  });
+});
+
 module.exports = router;

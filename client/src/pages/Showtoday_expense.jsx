@@ -3,19 +3,13 @@ import Axios from "axios";
 
 import "./Showtoday_expense.css";
 import Updatepopup from "../components/Updatepopup";
+import { formatDateTime } from "../components/TimeFormat";
 
 const Showtoday_expense = () => {
   const [todayExpense, setTodayExpense] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // * Time Format
-  const formatDateTime = (dateString) =>
-    new Date(dateString).toLocaleString("th-TH", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
-
-  // ! Get Today Expense API
+  // ! CALL GET Today Expense API
   const getTodayExpense = () => {
     Axios.get(
       `${import.meta.env.VITE_API_URL}/api/showTransaction/today-expense`,

@@ -1,18 +1,22 @@
 import { useState } from "react";
-
 import "./IncomeExpenseList.css";
 
+import Showtransaction from "../components/Showtransaction";
 import {months} from "../components/MonthYear";
 import {years} from "../components/MonthYear";
 
-const TxRxList = () => {
+const IncomeExpenseList = () => {
   const [incomebtn, setIncomeBtn] = useState(true);
   const now = new Date();
 
+  //? Month and Year
   const [month, setMonth] = useState(
     String(now.getMonth() + 1).padStart(2, "0"), // 01 - 12 (SQL Standard month)
   );
   const [year, setYear] = useState(String(now.getFullYear()));
+
+
+
   return (
     <>
       <div className="income-expense-container">
@@ -56,8 +60,9 @@ const TxRxList = () => {
           ))}
         </select>
       </div>
+      <Showtransaction month={month} year={year} type={incomebtn ? "income" : "expense"}/>
     </>
   );
 };
 
-export default TxRxList;
+export default IncomeExpenseList;
