@@ -44,3 +44,41 @@
   border-bottom: 2px solid rgba(128, 0, 0, 0.336);
 
 }
+
+.icon-category-content{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.middle-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.buttom-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.buttom-content p {
+  color: #00000085;
+}
+

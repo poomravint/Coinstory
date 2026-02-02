@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   width: 100%;
   max-width: 1000px;        /* เพดานความกว้างสูงสุดในจอคอม */
   height: auto;             /* ให้ความสูงยืดตามเนื้อหา */

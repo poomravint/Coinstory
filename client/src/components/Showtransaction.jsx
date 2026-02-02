@@ -4,6 +4,8 @@ import Axios from "axios";
 
 import Updatepopup from "./Updatepopup";
 
+import { expenseCategoryIcons } from "./Category";
+import { incomeCategoryIcons } from "./Category";
 import { formatDateTime } from "../components/TimeFormat";
 
 const Showtransaction = ({ month, year, type }) => {
@@ -47,7 +49,15 @@ const Showtransaction = ({ month, year, type }) => {
             onClick={() => setSelectedItem(item)}
           >
             <div className="top-content">
-              <p>Type : {item.category}</p>
+              <div className="icon-category-content">
+                <img
+                  src={item.money_type === "income" ? incomeCategoryIcons[item.category] : expenseCategoryIcons[item.category]}
+                  alt="Icon"
+                  className="icon-img"
+                />
+                <p>{item.category}</p>
+              </div>
+
               <p>
                 <strong>{item.amount}</strong> THB
               </p>
