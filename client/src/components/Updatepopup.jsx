@@ -8,7 +8,6 @@ import { incomeCategories } from "./Category";
 import { expenseCategories } from "./Category";
 
 const Updatepopup = ({ item, onClose, onUpdated }) => {
-  if (!item) return null;
 
   //! Update Date&Time for Show
   const formatForShow = (dt) => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 
 import "./Showtoday_expense.css";
@@ -31,11 +31,12 @@ const Showtoday_expense = () => {
           getTransaction={() => getTodayExpense()}
         />
       </div>
-      <Updatepopup
+
+      {/* <Updatepopup
         item={selectedItem}
         onClose={() => setSelectedItem(null)}
         onUpdated={getTodayExpense}
-      />
+      /> */}
     </>
   );
 };

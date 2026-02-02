@@ -8,36 +8,8 @@ import { expenseCategoryIcons } from "./Category";
 import { incomeCategoryIcons } from "./Category";
 import { formatDateTime } from "../components/TimeFormat";
 
-const Showtransaction = ({transaction, getTransaction}) => {
-  // const [transaction, setTransaction] = useState([]);
+const Showtransaction = ({ transaction, getTransaction }) => {
   const [selectedItem, setSelectedItem] = useState(null);
-
-  // //! CALL GET Transaction API
-  // const getTransaction = async () => {
-  //   if (!month || !year || !type) {
-  //     return;
-  //   }
-  //   await Axios.get(
-  //     `${import.meta.env.VITE_API_URL}/api/showTransaction/month-transaction`,
-  //     {
-  //       params: {
-  //         month,
-  //         year,
-  //         type,
-  //       },
-  //     },
-  //   ).then((response) => {
-  //     setTransaction(response.data.data || []);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   getTransaction();
-  // }, []);
-
-  // useEffect(() => {
-  //   getTransaction();
-  // }, [{ month, year, type }]);
 
   return (
     <>
@@ -51,7 +23,11 @@ const Showtransaction = ({transaction, getTransaction}) => {
             <div className="top-content">
               <div className="icon-category-content">
                 <img
-                  src={item.money_type === "income" ? incomeCategoryIcons[item.category] : expenseCategoryIcons[item.category]}
+                  src={
+                    item.money_type === "income"
+                      ? incomeCategoryIcons[item.category]
+                      : expenseCategoryIcons[item.category]
+                  }
                   alt="Icon"
                   className="icon-img"
                 />
@@ -73,11 +49,13 @@ const Showtransaction = ({transaction, getTransaction}) => {
           </div>
         ))}
       </div>
-      <Updatepopup
-        item={selectedItem}
-        onClose={() => setSelectedItem(null)}
-        onUpdated={getTransaction}
-      />
+      {selectedItem && (
+        <Updatepopup
+          item={selectedItem}
+          onClose={() => setSelectedItem(null)}
+          onUpdated={getTransaction}
+        />
+      )}
     </>
   );
 };
