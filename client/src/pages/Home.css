@@ -7,7 +7,7 @@
 }
 
 .total-box {
-  height: 250px;
+  height: 320px;
   width: 300px;
   border-radius: 12px; /* ปรับความโค้งให้ดูทันสมัยขึ้น */
   /* background-color: #ffd8df60; */
@@ -53,6 +53,12 @@
   border-bottom: 2px solid rgba(128, 0, 0, 0.336);
 }
 
+.currentmonth-remaining {
+  background-color: rgba(151, 222, 240, 0.644);
+  border-left: 2px solid rgba(118, 176, 190, 0.644);
+  border-bottom: 2px solid rgba(118, 176, 190, 0.644);
+}
+
 .icon-box {
   display: flex;
   align-items: center;
@@ -86,4 +92,14 @@
   width: 32px;
   height: 29px;
   object-fit: contain;
+}
+
+.month-img {
+  width: 32px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.red-active {
+  color: red;
 }

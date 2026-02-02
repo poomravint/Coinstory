@@ -5,14 +5,22 @@ import { useNavigate } from "react-router-dom";
 
 import cashIcon from "../assets/cash.png";
 import expenseIcon from "../assets/expenses.svg";
+import monthIcon from "../assets/month.png"
 import Transactionform from "../components/Transactionform";
+import { months } from "../components/MonthYear";
 
 const Home = () => {
   const [totalCash, setTotalCash] = useState(0);
   const [todayExpense, setTodayExpense] = useState(0);
+  const [currentMonthExpense, setCurrentMonthExpense] = useState(0);
+  const [currentMonthIncome, setCurrentMonthIncome] = useState(0);
 
   //* For use Navigate
   const navigate = useNavigate();
+
+  //* For current get month
+  const now = new Date();
+  const currentmonth = Number(now.getMonth());
 
   //! Get totalCash from API
   const getTotalCash = () => {
@@ -33,9 +41,31 @@ const Home = () => {
     } catch (err) {}
   };
 
+  //! Get currentMonth Expense from API
+  const getCurrentMonthExpense = async () => {
+    try {
+      const response = await Axios.get(
+        `${import.meta.env.VITE_API_URL}/api/home/currentmonth-expense`,
+      );
+      setCurrentMonthExpense(response.data.total_month_expense || 0);
+    } catch (err) {}
+  };
+
+  //! Get currentMonth Income from API
+  const getCurrentMonthIncome = async () => {
+    try {
+      const response = await Axios.get(
+        `${import.meta.env.VITE_API_URL}/api/home/currentmonth-income`,
+      );
+      setCurrentMonthIncome(response.data.total_month_income || 0);
+    } catch (err) {}
+  };
+
   useEffect(() => {
     getTotalCash();
     getTodayExpense();
+    getCurrentMonthExpense();
+    getCurrentMonthIncome();
   }, []);
 
   return (
@@ -83,11 +113,45 @@ const Home = () => {
               <p>Today expense</p>
             </div>
           </div>
+          <div
+            className="item-box currentmonth-remaining"
+            onClick={() => {
+              if (todayExpense !== 0) {
+                navigate("/today-expense");
+              }
+            }}
+          >
+            {/* Month Result box */}
+            <div className="icon-box">
+              <div className="icon-bg">
+                <img
+                  src={monthIcon}
+                  alt="Month Icon"
+                  className="month-img"
+                />
+              </div>
+              <p>
+                <strong
+                  className={
+                    currentMonthExpense > currentMonthIncome ? "red-active" : ""
+                  }
+                >
+                  {currentMonthExpense}
+                </strong>
+                /<strong>{currentMonthIncome}</strong> THB
+              </p>
+            </div>
+            <div className="detail-box">
+              <p>{months[currentmonth].fullname}</p>
+            </div>
+          </div>
         </div>
         <Transactionform
           onTransactionAdded={() => {
             getTotalCash();
             getTodayExpense();
+            getCurrentMonthExpense();
+            getCurrentMonthIncome();
           }}
         />
       </div>

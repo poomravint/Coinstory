@@ -39,6 +39,43 @@ router.get("/today-expense", (req, res) => {
   });
 });
 
+//! Get totalMonthExpense API
+router.get("/currentmonth-expense", (req, res) => {
+  const sql = `SELECT SUM(amount) as total_monthexpense
+               FROM transactions
+               WHERE MONTH(action_at) = MONTH(CURRENT_DATE())
+                AND  YEAR(action_at) = YEAR(CURRENT_DATE())
+                AND  money_type = "expense"`;
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    const total = results[0].total_monthexpense ?? 0;
+    res.json({
+      total_month_expense: Number(total),
+    });
+  });
+});
+
+//! Get totalMonthIncome API
+router.get("/currentmonth-income", (req, res) => {
+  const sql = `SELECT SUM(amount) as total_monthincome
+               FROM transactions
+               WHERE MONTH(action_at) = MONTH(CURRENT_DATE())
+                AND  YEAR(action_at) = YEAR(CURRENT_DATE())
+                AND  money_type = "income" `;
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    const total = results[0].total_monthincome ?? 0;
+    res.json({
+      total_month_income: Number(total),
+    });
+  });
+});
+
 //! POST transaction API
 router.post("/addtransaction", (req, res) => {
   const { action_at, money_type, category, amount, note } = req.body;
