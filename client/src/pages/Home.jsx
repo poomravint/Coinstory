@@ -80,7 +80,7 @@ const Home = () => {
                 <img src={cashIcon} alt="Cash Icon" className="cash-img" />
               </div>
               <p>
-                <strong>{totalCash}</strong> THB
+                <strong className={totalCash < 0 ? "red-active" : ""}>{totalCash}</strong> THB
               </p>
             </div>
             <div className="detail-box">

@@ -5,7 +5,8 @@ const db = require("../config/db");
 //! GET All today transactions
 router.get("/today-expense", (req, res) => {
   const sql = `SELECT * FROM transactions
-               WHERE DATE(action_at) = CURDATE() AND money_type = "expense"`;
+               WHERE DATE(action_at) = CURDATE() AND money_type = "expense"
+               ORDER BY action_at ASC`;
 
   db.query(sql, (err, results) => {
     if (err) {
