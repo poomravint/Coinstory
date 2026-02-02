@@ -21,6 +21,7 @@ const IncomeExpenseList = () => {
   const [category, setCategory] = useState("");
 
   const [transaction, setTransaction] = useState([]);
+  const [transactionlength, setTransactionLength] = useState(0);
 
   //! CALL GET Transaction API
   const getTransaction = async () => {
@@ -38,6 +39,7 @@ const IncomeExpenseList = () => {
       },
     ).then((response) => {
       setTransaction(response.data.data || []);
+      setTransactionLength(response.data.count || 0);
     });
   };
 
@@ -57,6 +59,7 @@ const IncomeExpenseList = () => {
       },
     ).then((response) => {
       setTransaction(response.data.data || []);
+      setTransactionLength(response.data.count || 0);
     });
   };
 
@@ -143,16 +146,25 @@ const IncomeExpenseList = () => {
             ))}
         </select>
       </div>
-      <div
-        className={`total-amount-box ${incomebtn ? "active income" : "active expense"}`}
-      >
-        <p>
-          Total :{" "}
-          <strong>
-            {transaction.reduce((sum, item) => sum + Number(item.amount), 0)}
-          </strong>{" "}
-          THB
-        </p>
+      <div className="total-amount-item-box">
+        <div
+          className={`total-amount-box ${incomebtn ? "active income" : "active expense"}`}
+        >
+          <p>
+            Total :{" "}
+            <strong>
+              {transaction.reduce((sum, item) => sum + Number(item.amount), 0)}
+            </strong>{" "}
+            THB
+          </p>
+        </div>{" "}
+        <div
+          className={`total-amount-box ${incomebtn ? "active income" : "active expense"}`}
+        >
+          <p>
+            Total : x<strong>{transactionlength}</strong> item
+          </p>
+        </div>
       </div>
       {category === "" && (
         <Showtransaction
@@ -160,7 +172,6 @@ const IncomeExpenseList = () => {
           getTransaction={() => getTransaction()}
         />
       )}
-
       {category !== "" && (
         <Showtransaction
           transaction={transaction}
