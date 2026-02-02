@@ -31,12 +31,6 @@ const Showtoday_expense = () => {
           getTransaction={() => getTodayExpense()}
         />
       </div>
-
-      {/* <Updatepopup
-        item={selectedItem}
-        onClose={() => setSelectedItem(null)}
-        onUpdated={getTodayExpense}
-      /> */}
     </>
   );
 };

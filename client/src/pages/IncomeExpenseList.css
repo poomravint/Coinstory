@@ -30,12 +30,13 @@
   background-color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
+.total-amount-box.active.income,
 .toggle-item.active.income {
   color: white;
   background-color: #2ecc709d;
 }
 
+.total-amount-box.active.expense,
 .toggle-item.active.expense {
   color: white;
   background-color: #e74d3ca2;
@@ -100,4 +101,19 @@
 .select-Month-Year::-webkit-calendar-picker-indicator:hover {
   transform: scale(1.2);
   filter: invert(0.3);
+}
+
+.total-amount-box {
+  width: 150px;
+  height: 40px;
+
+  display: flex;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  color: black !important;
 }

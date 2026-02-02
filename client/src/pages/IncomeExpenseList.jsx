@@ -93,7 +93,9 @@ const IncomeExpenseList = () => {
           ))}
         </select>
       </div>
-
+      <div className={`total-amount-box ${incomebtn ? "active income" : "active expense"}`}>
+        <p>Total : <strong>{transaction.reduce((sum, item) => sum + Number(item.amount), 0)}</strong> THB</p>
+      </div>
       <Showtransaction
         transaction={transaction}
         getTransaction={() => getTransaction()}
