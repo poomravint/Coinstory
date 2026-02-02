@@ -8,36 +8,36 @@ import { expenseCategoryIcons } from "./Category";
 import { incomeCategoryIcons } from "./Category";
 import { formatDateTime } from "../components/TimeFormat";
 
-const Showtransaction = ({ month, year, type }) => {
-  const [transaction, setTransaction] = useState([]);
+const Showtransaction = ({transaction, getTransaction}) => {
+  // const [transaction, setTransaction] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  //! CALL GET Transaction API
-  const getTransaction = async () => {
-    if (!month || !year || !type) {
-      return;
-    }
-    await Axios.get(
-      `${import.meta.env.VITE_API_URL}/api/showTransaction/month-transaction`,
-      {
-        params: {
-          month,
-          year,
-          type,
-        },
-      },
-    ).then((response) => {
-      setTransaction(response.data.data || []);
-    });
-  };
+  // //! CALL GET Transaction API
+  // const getTransaction = async () => {
+  //   if (!month || !year || !type) {
+  //     return;
+  //   }
+  //   await Axios.get(
+  //     `${import.meta.env.VITE_API_URL}/api/showTransaction/month-transaction`,
+  //     {
+  //       params: {
+  //         month,
+  //         year,
+  //         type,
+  //       },
+  //     },
+  //   ).then((response) => {
+  //     setTransaction(response.data.data || []);
+  //   });
+  // };
 
-  useEffect(() => {
-    getTransaction();
-  }, []);
+  // useEffect(() => {
+  //   getTransaction();
+  // }, []);
 
-  useEffect(() => {
-    getTransaction();
-  }, [{ month, year, type }]);
+  // useEffect(() => {
+  //   getTransaction();
+  // }, [{ month, year, type }]);
 
   return (
     <>

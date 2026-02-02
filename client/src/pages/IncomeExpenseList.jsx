@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Axios from "axios";
 import "./IncomeExpenseList.css";
 
 import Showtransaction from "../components/Showtransaction";
-import {months} from "../components/MonthYear";
-import {years} from "../components/MonthYear";
+import { months } from "../components/MonthYear";
+import { years } from "../components/MonthYear";
 
 const IncomeExpenseList = () => {
   const [incomebtn, setIncomeBtn] = useState(true);
@@ -14,8 +15,40 @@ const IncomeExpenseList = () => {
     String(now.getMonth() + 1).padStart(2, "0"), // 01 - 12 (SQL Standard month)
   );
   const [year, setYear] = useState(String(now.getFullYear()));
+  const [type, setType] = useState("income");
 
+  const [transaction, setTransaction] = useState([]);
 
+  //! CALL GET Transaction API
+  const getTransaction = async () => {
+    if (!month || !year || !type) {
+      return;
+    }
+    await Axios.get(
+      `${import.meta.env.VITE_API_URL}/api/showTransaction/month-transaction`,
+      {
+        params: {
+          month,
+          year,
+          type,
+        },
+      },
+    ).then((response) => {
+      setTransaction(response.data.data || []);
+    });
+  };
+
+  useEffect(() => {
+    getTransaction();
+  }, []);
+
+  useEffect(() => {
+    getTransaction();
+  }, [{ month, year, type }]);
+
+  useEffect(() => {
+    setType(incomebtn ? "income" : "expense");
+  }, [incomebtn]);
 
   return (
     <>
@@ -54,13 +87,17 @@ const IncomeExpenseList = () => {
           onChange={(e) => setYear(e.target.value)}
         >
           {years.map((y) => (
-            <option key= {y} value={y}>
+            <option key={y} value={y}>
               {y}
             </option>
           ))}
         </select>
       </div>
-      <Showtransaction month={month} year={year} type={incomebtn ? "income" : "expense"}/>
+
+      <Showtransaction
+        transaction={transaction}
+        getTransaction={() => getTransaction()}
+      />
     </>
   );
 };
