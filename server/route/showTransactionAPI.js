@@ -41,9 +41,34 @@ router.get("/month-transaction", (req, res) => {
 
     res.json({
       count: results.length,
-      data: results
+      data: results,
     });
   });
 });
 
+//! GET Month Transaction filter by Type
+router.get("/month-transaction-type", (req, res) => {
+  const { month, year, category } = req.query;
+  if (!month || !year || !category) {
+    return res
+      .status(400)
+      .json({ message: "Please provide month, year, and category" });
+  }
+
+  const sql = `SELECT * FROM transactions
+               WHERE MONTH(action_at) = ?
+               AND YEAR(action_at) = ?
+               AND category = ?
+               ORDER BY action_at DESC`;
+  db.query(sql, [month, year, category], (err, results) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+
+    res.json({
+      count: results.length,
+      data: results,
+    });
+  });
+});
 module.exports = router;
