@@ -2,6 +2,8 @@ import { useState, useEffect, use } from "react";
 import Axios from "axios";
 import "./Transactionform.css";
 
+import { setCurrentDateTime } from "./TimeFormat";
+import { formatDateTimeForMySQL } from "./TimeFormat";
 import { incomeCategories } from "./Category";
 import { expenseCategories } from "./Category";
 
@@ -18,23 +20,11 @@ const Transactionform = ({ onTransactionAdded }) => {
     }
   }, [type]);
 
-  // ! Set current time
-  const setCurrentDateTime = () => {
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    setDateTime(now.toISOString().slice(0, 16));
-  };
-
   useEffect(() => {
     {
-      setCurrentDateTime();
+      setCurrentDateTime(setDateTime);
     }
   }, []);
-
-  // ! Change Time format for POST to DB
-  const formatDateTimeForMySQL = (dt) => {
-    return dt.replace("T", " ") + ":00";
-  };
 
   // ! CALL POST Transaction API
   const postTransaction = async () => {
@@ -57,14 +47,14 @@ const Transactionform = ({ onTransactionAdded }) => {
         payload,
       );
       //! Auto update content which show on home page
-       onTransactionAdded();
-      
+      onTransactionAdded();
+
       console.log("POST success:", res.data);
 
       // (option) reset form
       setAmount("");
       setNote("");
-      setCurrentDateTime();
+      setCurrentDateTime(setDateTime);
     } catch (err) {
       console.error("POST failed:", err);
     }

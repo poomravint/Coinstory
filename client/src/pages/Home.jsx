@@ -115,9 +115,7 @@ const Home = () => {
           <div
             className="item-box currentmonth-remaining"
             onClick={() => {
-              if (todayExpense !== 0) {
                 navigate("/list");
-              }
             }}
           >
             {/* Month Result box */}
