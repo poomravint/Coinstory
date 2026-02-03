@@ -1,9 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 import "./Summaries.css";
 
+import Circlechart from "../components/Circlechart";
+
 const Summaries = () => {
   const [typebtn, setTypeBtn] = useState("general");
+  const [chartdata, setChartdata] = useState([]);
+
+  //! Call GET Sum Income and Expense
+  const getSumIncomExpense = async () => {
+    await Axios.get(`${import.meta.env.VITE_API_URL}/api/getSummary/all`).then(
+      (response) => {
+        setChartdata(response.data.data || []);
+      },
+    );
+  };
+
+  useEffect(() => {
+    getSumIncomExpense();
+  }, [typebtn]);
 
   const getTranslateX = () => {
     if (typebtn === "general") return "0px";
@@ -41,6 +58,9 @@ const Summaries = () => {
           </div>
         </div>
       </div>
+      {typebtn === "general" && <div className="chart-box">
+        <Circlechart totalIncome = {Number(chartdata[0]?.total_income)} totalExpense = {Number(chartdata[0]?.total_expense)}/>
+      </div>}
     </>
   );
 };
