@@ -5,13 +5,39 @@
   margin-bottom: 20px;
 }
 
+.toggle-item.active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+
 .toggle-wrapper {
+  position: relative;
   display: flex;
   background-color: #f0f0f0;
   padding: 5px;
   border-radius: 50px;
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
   gap: 5px;
+  z-index: 0;
+}
+
+.sliding-bg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100px;
+  height: calc(100% - 10px);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.sliding-bg.income {
+  background-color: #2ecc709d;
+}
+.sliding-bg.expense {
+  background-color: #e74d3ca2;
 }
 
 .toggle-item {
@@ -23,12 +49,20 @@
   font-weight: bold;
   font-size: 14px;
   color: #888;
-  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2; /* ตัวหนังสืออยู่หน้าสุด */
+  transition: color 0.3s ease;
+  background: transparent !important;
 }
 
-.toggle-item.active {
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.income-expense-container .toggle-item.active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+
+.toggle-item:not(.active):hover {
+  color: #555;
 }
 
 .total-amount-box.active.income,

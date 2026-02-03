@@ -6,7 +6,7 @@ export const setCurrentDateTime = (setDateTime) => {
 };
 
 // ! Change Time format for POST to DB
-const formatDateTimeForMySQL = (dt) => {
+export const formatDateTimeForMySQL = (dt) => {
   return dt.replace("T", " ") + ":00";
 };
 

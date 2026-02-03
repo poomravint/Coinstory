@@ -1,0 +1,62 @@
+.summaries-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.toggle-wrapper {
+  position: relative; /* สำคัญ: เพื่อให้ sliding-bg อิงตำแหน่งกับตัวแม่ */
+  display: flex;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 50px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  gap: 5px;
+  z-index: 0;
+}
+
+.sliding-bg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100px; /* เท่าความกว้าง toggle-item */
+  height: calc(100% - 10px);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* ความเร็วตอนวิ่ง */
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sliding-bg.general { background-color: #ee64148c; }
+.sliding-bg.income { background-color: #2ecc709d; }
+.sliding-bg.expense { background-color: #e74d3ca2; }
+
+.toggle-item {
+  width: 100px;
+  padding: 10px 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #888;
+  position: relative;
+  z-index: 2; /* อยู่เหนือ sliding-bg */
+  transition: color 0.3s ease;
+}
+.toggle-item.active {
+
+  
+  color: white; 
+  transition: transform 0.2s ease;
+}
+
+.toggle-item.active{
+  color: white;
+}
+
+.toggle-item:not(.active):hover {
+  color: #555;
+}
+

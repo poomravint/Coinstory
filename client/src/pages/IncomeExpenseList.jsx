@@ -87,6 +87,10 @@ const IncomeExpenseList = () => {
       <div className="income-expense-container">
         <div className="toggle-wrapper">
           <div
+            className={`sliding-bg ${incomebtn ? "income" : "expense"}`}
+            style={{ transform: `translateX(${incomebtn ? "0px" : "105px"})` }}
+          ></div>
+          <div
             className={`toggle-item ${incomebtn ? "active income" : ""}`}
             onClick={() => setIncomeBtn(true)}
           >
