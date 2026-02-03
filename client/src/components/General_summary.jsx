@@ -4,7 +4,18 @@ import { PieChart, Pie } from "recharts";
 
 import "./General_summary.css";
 
+import { months } from "../components/MonthYear";
+import { years } from "../components/MonthYear";
+
 const General_summary = () => {
+  const now = new Date();
+  //? Month for SQL
+  const [month, setMonth] = useState(
+    String(now.getMonth() + 1).padStart(2, "0"), // 01 - 12 (SQL Standard month)
+  );
+  //?  Year for SQL
+  const [year, setYear] = useState(String(now.getFullYear()));
+
   const [chartdata, setChartdata] = useState([]);
   const [totalIncome, setTotalIncome] = useState(0);
   const [countIncome, setCountIncome] = useState(0);
@@ -39,6 +50,31 @@ const General_summary = () => {
 
   return (
     <div className="general-summary">
+      <div className="select-box">
+        <select
+          className="select-Month-Year"
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+        >
+          {months.map((m) => (
+            <option key={m.value} value={m.value}>
+              {m.label}
+            </option>
+          ))}
+        </select>
+
+        <select
+          className="select-Month-Year"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        >
+          {years.map((y) => (
+            <option key={y} value={y}>
+              {y}
+            </option>
+          ))}
+        </select>
+      </div>
       <PieChart width={260} height={260}>
         <Pie
           data={data}

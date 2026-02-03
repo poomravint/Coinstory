@@ -9,15 +9,17 @@ import { incomeCategories } from "../components/Category";
 import { expenseCategories } from "../components/Category";
 
 const IncomeExpenseList = () => {
-  const [incomebtn, setIncomeBtn] = useState(true);
+  const [incomebtn, setIncomeBtn] = useState(false);
   const now = new Date();
 
-  //? Month and Year
+  //? Month for SQL
   const [month, setMonth] = useState(
     String(now.getMonth() + 1).padStart(2, "0"), // 01 - 12 (SQL Standard month)
   );
+  //? Year for SQL
   const [year, setYear] = useState(String(now.getFullYear()));
-  const [type, setType] = useState("income");
+
+  const [type, setType] = useState("expense");
   const [category, setCategory] = useState("");
 
   const [transaction, setTransaction] = useState([]);
