@@ -6,17 +6,21 @@ const db = require("../config/db");
 router.get("/all", (req, res) => {
   const sql = `SELECT 
                  SUM(CASE WHEN money_type = 'income' THEN amount ELSE 0 END) AS total_income,
-                 SUM(CASE WHEN money_type = 'expense' THEN amount ELSE 0 END) AS total_expense
+                 SUM(CASE WHEN money_type = 'expense' THEN amount ELSE 0 END) AS total_expense,
+
+                 COUNT(CASE WHEN money_type = 'income' THEN 1 END) AS count_income,
+                 COUNT(CASE WHEN money_type = 'expense' THEN 1 END) AS count_expense
                FROM transactions`;
-    db.query (sql, (err,results) => {
-      if (err)
-      {
-        return res.status(500).json(err)
-      }
-      res.json({
-        data: results
-      })
-    })
-})
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    res.json({
+      data: results,
+    });
+  });
+});
+
+//! Get
 
 module.exports = router;

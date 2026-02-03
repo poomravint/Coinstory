@@ -3,7 +3,7 @@ import Axios from "axios";
 
 import "./Summaries.css";
 
-import Circlechart from "../components/Circlechart";
+import General_summary from "../components/General_summary";
 
 const Summaries = () => {
   const [typebtn, setTypeBtn] = useState("general");
@@ -58,9 +58,21 @@ const Summaries = () => {
           </div>
         </div>
       </div>
-      {typebtn === "general" && <div className="chart-box">
-        <Circlechart totalIncome = {Number(chartdata[0]?.total_income)} totalExpense = {Number(chartdata[0]?.total_expense)}/>
-      </div>}
+      {typebtn === "general" && (
+        <div className="chart-box">
+          <General_summary />
+        </div>
+      )}
+      {typebtn === "income" && (
+        <div className="chart-box">
+          <General_summary />
+        </div>
+      )}
+      {typebtn === "expense" && (
+        <div className="chart-box">
+          <General_summary />
+        </div>
+      )}
     </>
   );
 };

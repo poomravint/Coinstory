@@ -1,0 +1,60 @@
+.general-summary {
+  display: flex;
+  flex-direction: column; /* จัดให้ Chart กับ Text เรียงกันแนวตั้ง */
+  align-items: center; /* จัดทุกอย่างให้อยู่กึ่งกลางแนวนอน */
+  justify-content: center;
+  width: 100%; /* ขยายให้เต็มพื้นที่เพื่อหาจุดกึ่งกลางที่ถูกต้อง */
+}
+
+.income-summary-text {
+  margin-top: 10px; /* เพิ่มระยะห่างระหว่าง Chart กับตัวหนังสือ */
+  text-align: center; /* จัดตัวหนังสือให้อยู่กลางบรรทัดตัวเอง */
+  color: #555; /* ปรับสีให้อ่านง่ายขึ้น (ทางเลือก) */
+  background-color: rgba(149, 255, 193, 0.644);
+  padding: 12px;
+  border-radius: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.expense-summary-text {
+  margin-top: 10px; /* เพิ่มระยะห่างระหว่าง Chart กับตัวหนังสือ */
+  text-align: center; /* จัดตัวหนังสือให้อยู่กลางบรรทัดตัวเอง */
+  color: #555; /* ปรับสีให้อ่านง่ายขึ้น (ทางเลือก) */
+  background-color: rgba(255, 149, 149, 0.644);
+  padding: 12px;
+  border-radius: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.total-amount-box {
+  /* เลิกใช้ width: 30% หรือ 100% */
+  width: auto; /* ให้กว้างเท่ากับเนื้อหา */
+  min-width: 160px; /* กำหนดความกว้างขั้นต่ำเพื่อให้ดูสวยงาม */
+  padding: 10px 20px; /* เพิ่มพื้นที่ข้างในกล่อง */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.type-count-content p {
+  margin: 5px; /* ลบระยะห่างภายนอก (ตัวการที่ทำให้จัดกึ่งกลางยาก) */
+  padding: 2px; /* ลบระยะห่างภายใน (ถ้ามี) */
+  line-height: 1; /* ปรับความสูงบรรทัดให้พอดีกับตัวอักษร (หรือ 1.2 - 1.5 ตามชอบ) */
+  font-size: inherit; /* ให้ใช้ขนาดฟอนต์ตามตัวแม่ */
+  display: block; /* มั่นใจว่าเป็น block element */
+}
+
+.amount-content strong {
+  font-size: 19px;
+}
