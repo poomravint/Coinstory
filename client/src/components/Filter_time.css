@@ -11,6 +11,7 @@
   color: rgb(100, 106, 110);
   background-color: rgb(212, 212, 212);
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .filter-time-container .active {

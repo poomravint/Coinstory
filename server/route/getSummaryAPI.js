@@ -21,6 +21,33 @@ router.get("/all", (req, res) => {
   });
 });
 
-//! Get
+//! Get Sum Income and Expense by Month
+router.get("/month", (req, res) => {
+  const { month, year } = req.query;
+  
+  if (!month || !year){
+     return res
+      .status(400)
+      .json({ message: "Please provide month and year" });
+  }
+
+  const sql = `SELECT 
+                 SUM(CASE WHEN money_type = 'income' THEN amount ELSE 0 END) AS total_income,
+                 SUM(CASE WHEN money_type = 'expense' THEN amount ELSE 0 END) AS total_expense,
+                 COUNT(CASE WHEN money_type = 'income' THEN 1 END) AS count_income,
+                 COUNT(CASE WHEN money_type = 'expense' THEN 1 END) AS count_expense
+               FROM transactions
+               WHERE MONTH(action_at) = ? 
+               AND YEAR(action_at) = ?`;
+  db.query(sql, [month, year], (err,results) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    res.json({
+      data: results
+    })
+  })
+
+})
 
 module.exports = router;
