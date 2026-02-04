@@ -4,16 +4,17 @@ import { PieChart, Pie } from "recharts";
 
 import "./General_summary.css";
 
-import { months } from "../components/MonthYear";
-import { years } from "../components/MonthYear";
+import Filter_time from "./Filter_time";
+import Month_year_selecter from "./Month_year_selecter";
 
 const General_summary = () => {
+
+  const [timetype, setTimeType] = useState("all")
+
   const now = new Date();
-  //? Month for SQL
   const [month, setMonth] = useState(
-    String(now.getMonth() + 1).padStart(2, "0"), // 01 - 12 (SQL Standard month)
+    String(now.getMonth() + 1).padStart(2, "0"),
   );
-  //?  Year for SQL
   const [year, setYear] = useState(String(now.getFullYear()));
 
   const [chartdata, setChartdata] = useState([]);
@@ -21,7 +22,6 @@ const General_summary = () => {
   const [countIncome, setCountIncome] = useState(0);
   const [totalExpense, setTotalExpense] = useState(0);
   const [countExpense, setCountExpense] = useState(0);
-
   const total = totalIncome + totalExpense || 1;
 
   const incomePercent = Math.round((totalIncome / total) * 100);
@@ -48,32 +48,27 @@ const General_summary = () => {
     getSumIncomExpense();
   }, []);
 
+  useEffect(() => {
+    if (timetype === "all"){
+      getSumIncomExpense();
+    }
+    else if (timetype === "month"){
+      
+    }
+  }, [timetype])
+
   return (
     <div className="general-summary">
       <div className="select-box">
-        <select
-          className="select-Month-Year"
-          value={month}
-          onChange={(e) => setMonth(e.target.value)}
-        >
-          {months.map((m) => (
-            <option key={m.value} value={m.value}>
-              {m.label}
-            </option>
-          ))}
-        </select>
-
-        <select
-          className="select-Month-Year"
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-        >
-          {years.map((y) => (
-            <option key={y} value={y}>
-              {y}
-            </option>
-          ))}
-        </select>
+        <Filter_time timetype={timetype} setTimeType={setTimeType}/>
+        {timetype === "month" &&
+          <Month_year_selecter
+            month={month}
+            setMonth={setMonth}
+            year={year}
+            setYear={setYear}
+          />
+        }
       </div>
       <PieChart width={260} height={260}>
         <Pie

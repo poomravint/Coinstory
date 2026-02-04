@@ -58,6 +58,7 @@ const Summaries = () => {
           </div>
         </div>
       </div>
+
       {typebtn === "general" && (
         <div className="chart-box">
           <General_summary />

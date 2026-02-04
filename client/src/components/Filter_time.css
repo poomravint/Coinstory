@@ -1,0 +1,20 @@
+.filter-time-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-button {
+  width: 70px;
+  padding: 20px auto;
+  font-weight: bold;
+  color: rgb(100, 106, 110);
+  background-color: rgb(212, 212, 212);
+  border-radius: 20px;
+}
+
+.filter-time-container .active {
+  /* color: rgb(243, 243, 243); */
+  background-color: rgba(164, 238, 168, 0.384);
+  border: 2px solid rgb(57, 156, 82);
+}
