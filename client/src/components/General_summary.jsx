@@ -8,8 +8,7 @@ import Filter_time from "./Filter_time";
 import Month_year_selecter from "./Month_year_selecter";
 
 const General_summary = () => {
-
-  const [timetype, setTimeType] = useState("all")
+  const [timetype, setTimeType] = useState("all");
 
   const now = new Date();
   const [month, setMonth] = useState(
@@ -44,31 +43,58 @@ const General_summary = () => {
     );
   };
 
+  //! Call GET Sum Income and Expense filter by Month
+  const getSumIncomExpenseByMonth = async () => {
+    try {
+      const response = await Axios.get(
+        `${import.meta.env.VITE_API_URL}/api/getSummary/month`,
+        {
+          params: {
+            month: month,
+            year: year,
+          },
+        },
+      );
+      setTotalIncome(Number(response.data.data[0]?.total_income));
+      setCountIncome(Number(response.data.data[0]?.count_income));
+      setTotalExpense(Number(response.data.data[0]?.total_expense));
+      setCountExpense(Number(response.data.data[0]?.count_expense));
+    } catch (error) {
+      console.log("Error :", error);
+    }
+  };
+
   useEffect(() => {
     getSumIncomExpense();
+    console.log("Frist", month, year);
   }, []);
 
   useEffect(() => {
-    if (timetype === "all"){
+    if (timetype === "all") {
       getSumIncomExpense();
+    } else if (timetype === "month") {
+      getSumIncomExpenseByMonth();
     }
-    else if (timetype === "month"){
-      
+  }, [timetype]);
+
+  useEffect(() => {
+    if (timetype === "month") {
+      getSumIncomExpenseByMonth();
     }
-  }, [timetype])
+  }, [month, year]);
 
   return (
     <div className="general-summary">
       <div className="select-box">
-        <Filter_time timetype={timetype} setTimeType={setTimeType}/>
-        {timetype === "month" &&
+        <Filter_time timetype={timetype} setTimeType={setTimeType} />
+        {timetype === "month" && (
           <Month_year_selecter
             month={month}
             setMonth={setMonth}
             year={year}
             setYear={setYear}
           />
-        }
+        )}
       </div>
       <PieChart width={260} height={260}>
         <Pie

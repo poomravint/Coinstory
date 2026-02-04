@@ -6,7 +6,7 @@
   width: 100%; /* ขยายให้เต็มพื้นที่เพื่อหาจุดกึ่งกลางที่ถูกต้อง */
 }
 
-.select-box {
+.general-summary .select-box {
   display: flex;
   flex-direction: column; /* จัดให้ Chart กับ Text เรียงกันแนวตั้ง */
   align-items: center; /* จัดทุกอย่างให้อยู่กึ่งกลางแนวนอน */

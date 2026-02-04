@@ -9,18 +9,6 @@ const Summaries = () => {
   const [typebtn, setTypeBtn] = useState("general");
   const [chartdata, setChartdata] = useState([]);
 
-  //! Call GET Sum Income and Expense
-  const getSumIncomExpense = async () => {
-    await Axios.get(`${import.meta.env.VITE_API_URL}/api/getSummary/all`).then(
-      (response) => {
-        setChartdata(response.data.data || []);
-      },
-    );
-  };
-
-  useEffect(() => {
-    getSumIncomExpense();
-  }, [typebtn]);
 
   const getTranslateX = () => {
     if (typebtn === "general") return "0px";
